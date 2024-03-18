@@ -7,7 +7,7 @@ const signAccessToken = (userId) => {
         const secret = process.env.ACCESS_TOKEN_SECRET
         const options = {
             expiresIn: '4h', //24h
-            audience: userId //(who the token is for)
+            audience: userId //(who is the token is for)
         }
         JWT.sign(payload, secret, options, (error, token) =>{
             if(error) return reject(error.message) //internal server error status:500
