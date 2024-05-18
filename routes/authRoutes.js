@@ -42,6 +42,13 @@ router.post('/login', asyncHandler(async (req, res) => {
 
 //registering a user
 router.post('/register', asyncHandler(async (req, res) => {
+    let {email} = req.body
+    const user =  await UserModel.findOne({email})
+
+    if(user){
+        res.status(400)
+        throw new Error("User already exists")
+    }
 
     UserModel.create(req.body).then(async(user)=>{
         //grant access token
